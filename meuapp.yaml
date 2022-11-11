@@ -1,0 +1,12 @@
+---
+- name: compila aplicacao frontend
+  hosts: localhost
+  remote_user: alessandro
+
+  tasks:
+  - name: baixa do git
+    ansible.builtin.git:
+        repo: 'https://github.com/AlessandroFazenda/angular-realworld-example-app.git'
+        dest: /home/alessandro/checkout
+  - name: compila com docker
+    shell: docker build -t meuapp:`date +%Y-%m-%d-%H-%M-%S` /home/alessandro/checkout
